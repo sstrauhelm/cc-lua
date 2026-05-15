@@ -25,13 +25,13 @@ function Stabilizer:new(lf, rb, rf, lb, min, max)
     local c = setmetatable({}, Stabilizer)
     c.motors = {lf, rb, rf, lb}
     c.motor_mixer = Matrix:from_table({
-        {-1, 1},
-        {1, -1},
+        {-1, -1},
         {1, 1},
-        {-1, -1}
+        {1, -1},
+        {-1, 1}
     })
-    c.roll_pid = PID:new(1, 0.1, 0.05)
-    c.pitch_pid = PID:new(1, 0.1, 0.05)
+    c.roll_pid = PID:new(100, 0.75, 0.2)
+    c.pitch_pid = PID:new(150, 2.8, 0.001)
     return c
 end
 
@@ -54,4 +54,4 @@ function wrapMotor(num)
 end
 
 local s = Stabilizer:new(wrapMotor(1), wrapMotor(2), wrapMotor(3), wrapMotor(0))
-s:tick(1, 0, 0.1)
+s:tick(0, 0, 0.5)
