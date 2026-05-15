@@ -21,9 +21,9 @@ Stabilizer.__index = Stabilizer
 -- \4/     \2/
 --  -       -
 
-function Stabilizer:new(rf, rb, lf, lb, min, max)
+function Stabilizer:new(lf, rb, rf, lb, min, max)
     local c = setmetatable({}, Stabilizer)
-    c.motors = {rf, rb, lf, lb}
+    c.motors = {lf, rb, rf, lb}
     c.motor_mixer = Matrix:from_table({
         {-1, 1},
         {1, -1},
@@ -53,5 +53,5 @@ function wrapMotor(num)
     return peripheral.wrap(string.format("Create_RotationSpeedController_%d", num))
 end
 
-local s = Stabilizer:new(wrapMotor(0), wrapMotor(1), wrapMotor(2), wrapMotor(3))
+local s = Stabilizer:new(wrapMotor(1), wrapMotor(2), wrapMotor(3), wrapMotor(0))
 s:tick(1, 0, 0.1)
