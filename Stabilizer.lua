@@ -6,12 +6,12 @@ Stabilizer = {}
 Stabilizer.__index = Stabilizer
 
 -- Motor configs are in the following configuration
--- 1 = rf
+-- 1 = lf
 -- 2 = rb
--- 3 = lf
+-- 3 = rf
 -- 4 = lb
 --  _       _
--- /3\     /1\
+-- /1\     /3\
 -- ---_   _---
 --     | |
 --      |
